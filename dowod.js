@@ -1,48 +1,28 @@
-//funkcja wlaczajaca sie po kliknieciu przycisku
-function walidacja(){
+let literki = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", 
+"L", "M", "N", "O", "P", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+let wagi = [7,3,1,7,3,1,7,3];
+let liczby = [1,2,3,4,5,6,7,8,9]
 
-    //walidacja imienia	
-    let imie = document.getElementById("imie");
-        
-        //przyklady jak maja wygladac poprawnie dane wpisane w polu
-        let poprawnie = /[a-z]{1,10}\s[a-z]{1,10}/g;
-        let tylkoimie = /[a-z]{1,8}/g;
-        
-        //jesli jest poprawnie wpisane
-        if (poprawnie.test(imie.value)==true){
-            imie.style.background="white";
-        
-        //jesli jest wpisane samo imie
-        }else if(tylkoimie.test(imie.value)==true){
-            alert("samo imie lub samo nazwisko nie wystarczy!");
-        }
-        
-        //jesli pole jest puste
-        else if(imie.value==""){
-            alert("wpisz imie oraz nazwisko!");
-        }
-        
-    //walidacja emaila
-    let email = document.getElementById("email");
-        
-        //jesli pole jest puste
-        if(email.value==""){
-            alert("podaj email!");
-        }
-        
-    //walidacja oceny
-    let ocena = document.getElementById("ocena");
-    
-        //jesli pole jest puste
-        if(ocena.value==""){
-            alert("wpisz ocenę!");
-        }
-        
-    //walidacja daty
-    let data = document.getElementById("data")
-    
-        //jesli pole jest puste
-        if(data.value==""){
-            alert("wpisz datę!")
-        }
-    }
+function generuj(){
+	
+	let cyfry = "";
+	let litery = "";
+	let suma = 0;
+	
+	for(var i=0; i<3; i++){
+    litery = litery + literki[Math.floor(Math.random() * literki.length)];
+	}
+	console.log(litery);
+
+	for(var i=0; i<5; i++){
+	cyfry = cyfry + liczby[Math.floor(Math.random() * liczby.length)];
+    suma = suma + (cyfry[i] * wagi[i]);
+	suma %= 10;
+	}
+	console.log(suma);
+	console.log(cyfry);
+	
+
+document.getElementById("wynik").innerText = litery + suma + cyfry;
+}
+
